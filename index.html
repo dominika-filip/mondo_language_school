@@ -158,15 +158,15 @@
   <section id="contact" class="section">
     <h2 data-i18n="contact_heading">Kontakt</h2>
     <div class="contact-grid">
-      <form id="contact-form" action="mailto:szkolamondo@gmail.com" method="POST" enctype="text/plain" class="card form">
+      <form id="contact-form" class="card form" autocomplete="on" aria-label="Formularz kontaktowy">
         <label data-i18n="label_name">Imię</label>
-        <input name="name" id="contact-name" required>
+        <input name="name" id="contact-name" required autocomplete="name">
 
         <label data-i18n="label_email">E-mail</label>
-        <input type="email" name="email" id="contact-email" required>
+        <input type="email" name="email" id="contact-email" required autocomplete="email">
 
         <label data-i18n="label_language">Język, którym jesteś zainteresowany/a</label>
-        <select name="preferred_language" id="contact-language" required>
+        <select name="preferred_language" id="contact-language" required autocomplete="off">
           <option value="pl" data-i18n="opt_pl">Polski</option>
           <option value="en" data-i18n="opt_en">English</option>
           <option value="it" data-i18n="opt_it">Italiano</option>
@@ -174,7 +174,7 @@
         </select>
 
         <label data-i18n="label_message">Wiadomość</label>
-        <textarea name="message" id="contact-message" rows="4" required></textarea>
+        <textarea name="message" id="contact-message" rows="4" required autocomplete="off"></textarea>
 
         <button class="btn primary" type="submit" data-i18n="btn_send">Wyślij</button>
       </form>
