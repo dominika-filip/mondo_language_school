@@ -1,4 +1,4 @@
-// script.js - navigation, reveal, and robust language switcher
+// script.js - navigation, reveal, robust language switcher + contact handler
 
 // ------- helpers -------
 function safeQueryAll(sel){ return Array.from(document.querySelectorAll(sel || '')); }
@@ -107,6 +107,11 @@ const dict = {
     label_name: "Imię",
     label_email: "E-mail",
     label_message: "Wiadomość",
+    label_language: "Język, którym jesteś zainteresowany/a",
+    opt_pl: "Polski",
+    opt_en: "English",
+    opt_it: "Italiano",
+    opt_ua: "Українська",
     btn_send: "Wyślij",
     contact_details_h3: "Dane kontaktowe",
     school_name: "Szkoła językowa Mondo",
@@ -172,6 +177,11 @@ const dict = {
     label_name: "Name",
     label_email: "E-mail",
     label_message: "Message",
+    label_language: "Preferred language",
+    opt_pl: "Polski",
+    opt_en: "English",
+    opt_it: "Italiano",
+    opt_ua: "Українська",
     btn_send: "Send",
     contact_details_h3: "Contact details",
     school_name: "Mondo Language School",
@@ -237,6 +247,11 @@ const dict = {
     label_name: "Nome",
     label_email: "E-mail",
     label_message: "Messaggio",
+    label_language: "Lingua preferita",
+    opt_pl: "Polski",
+    opt_en: "English",
+    opt_it: "Italiano",
+    opt_ua: "Українська",
     btn_send: "Invia",
     contact_details_h3: "Dettagli di contatto",
     school_name: "Scuola di lingue Mondo",
@@ -302,6 +317,11 @@ const dict = {
     label_name: "Ім'я",
     label_email: "E-mail",
     label_message: "Повідомлення",
+    label_language: "Бажана мова",
+    opt_pl: "Polski",
+    opt_en: "English",
+    opt_it: "Italiano",
+    opt_ua: "Українська",
     btn_send: "Надіслати",
     contact_details_h3: "Контактні дані",
     school_name: "Мовна школа Mondo",
@@ -361,6 +381,40 @@ function initAll(){
     if (!dict[lang]) { console.warn('Language not available:', lang); return; }
     applyLang(lang);
   });
+
+  // --- handle contact form submit (build mailto with selected language name) ---
+  (function attachContactHandler(){
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const name = (document.getElementById('contact-name') || {}).value || '';
+      const email = (document.getElementById('contact-email') || {}).value || '';
+      const langCode = (document.getElementById('contact-language') || {}).value || '';
+      const langEl = document.querySelector(`#contact-language option[value="${langCode}"]`);
+      const lang = langEl ? langEl.textContent.trim() : (langCode || '');
+      const message = (document.getElementById('contact-message') || {}).value || '';
+
+      const to = 'szkolamondo@gmail.com';
+      const subject = `[Kontakt] Zgłoszenie ze strony — język: ${lang}`;
+      const bodyLines = [
+        `Imię: ${name}`,
+        `E-mail: ${email}`,
+        `Język: ${lang}`,
+        ``,
+        `Wiadomość:`,
+        message
+      ];
+      const body = encodeURIComponent(bodyLines.join('\n'));
+
+      const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+      // open mail client
+      window.location.href = mailto;
+    });
+  })();
 }
 
 // run init depending on readyState
