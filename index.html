@@ -1,202 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title data-i18n="page_title">Szkoła językowa Mondo</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mondo Language School</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea, button {
+      padding: 12px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .form-status {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
 </head>
+
 <body>
-<header class="topbar">
-  <div class="container nav">
-    <div class="brand">
-      <img src="images/logo_white.png" alt="Logo Mondo" class="logo">
-      <div class="brand-text">
-        <strong data-i18n="brand_name">Szkoła językowa Mondo</strong>
-        <small id="tagline" data-i18n="tagline">Poznaj język, odkrywaj świat</small>
-      </div>
-    </div>
 
-    <nav class="tabs" aria-label="Główne sekcje">
-      <a class="tab active" href="#home" data-goto="home" data-i18n="nav_start">Start</a>
-      <a class="tab" href="#offer" data-goto="offer" data-i18n="nav_offer">Oferta</a>
-      <a class="tab" href="#materials" data-goto="materials" data-i18n="nav_materials">Materiały</a>
-      <a class="tab" href="#testimonials" data-goto="testimonials" data-i18n="nav_testimonials">Opinie</a>
-      <a class="tab" href="#contact" data-goto="contact" data-i18n="nav_contact">Kontakt</a>
-    </nav>
+  <!-- INNE SEKCJE STRONY -->
 
-    <div class="lang-switch" aria-label="Language switcher">
-      <button class="lang" data-lang="pl" title="Polski">🇵🇱</button>
-      <button class="lang" data-lang="en" title="English">🇬🇧</button>
-      <button class="lang" data-lang="it" title="Italiano">🇮🇹</button>
-      <button class="lang" data-lang="ua" title="Українська">🇺🇦</button>
-    </div>
-  </div>
-</header>
+  <section id="contact">
+    <h2>Kontakt</h2>
 
-<main class="container">
-  <section id="home" class="section hero-section">
-    <div class="hero-grid">
-      <div class="hero-text">
-        <h1 data-i18n="hero_title">Twoja przygoda z językiem zaczyna się tutaj</h1>
-        <p class="lead" data-i18n="hero_lead">Zapisz się na darmową lekcję próbną</p>
-        <div class="cta-row">
-          <a href="#contact" class="btn primary" data-i18n="cta_signup">Zapisz się</a>
-          <a href="#offer" class="btn outline primary" data-i18n="cta_offer">Zobacz ofertę</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <img src="images/logo_white.png" alt="Mondo - nauka języków" />
-      </div>
-    </div>
+    <!-- 🔽 FORMULARZ KONTAKTOWY -->
+    <form id="contact-form"
+          action="https://formspree.io/f/mzddpzzn"
+          method="POST">
+
+      <input type="text"
+             name="name"
+             placeholder="Imię i nazwisko"
+             required />
+
+      <input type="email"
+             name="email"
+             placeholder="Adres e-mail"
+             required />
+
+      <textarea name="message"
+                placeholder="Treść wiadomości"
+                required></textarea>
+
+      <button type="submit">Wyślij wiadomość</button>
+
+      <p class="form-status" id="form-status"></p>
+    </form>
   </section>
 
-  <section id="offer" class="section">
-    <h2 data-i18n="offer_heading">Oferta</h2>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <header>
-          <h3 data-i18n="price_individual_h3">Indywidualnie</h3>
-          <div class="price"><span data-i18n="price_individual_50">110zł / 50 min</span><br><span class="price-alt" data-i18n="price_individual_90">180zł / 90 min</span></div>
-        </header>
-        <ul>
-          <li data-i18n="li_langs">Języki: polski dla obcokrajowców, włoski, angielski</li>
-          <li data-i18n="li_one_on_one">Zajęcia 1 na 1 z lektorem</li>
-          <li data-i18n="li_program_individual">Indywidualny program nauczania</li>
-          <li data-i18n="li_flexible">Elastyczne terminy</li>
-          <li data-i18n="li_materials_included">Wszystkie materiały w cenie kursu</li>
-          <li data-i18n="li_virtual_tools">Wirtualna przestrzeń, narzędzia</li>
-        </ul>
-        <div class="card-cta"><a href="#contact" class="btn primary" data-i18n="cta_signup">Zapisz się</a></div>
-      </div>
+  <script>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
 
-      <div class="price-card">
-        <header>
-          <h3 data-i18n="price_pair_h3">W parach</h3>
-          <div class="price"><span data-i18n="price_pair_50">80zł / 50 min / os.</span><br><span class="price-alt" data-i18n="price_pair_90">130zł / 90 min / os.</span></div>
-        </header>
-        <ul>
-          <li data-i18n="li_langs">Języki: polski dla obcokrajowców, włoski, angielski</li>
-          <li data-i18n="li_two_on_one">Zajęcia 2 na 1 z lektorem</li>
-          <li data-i18n="li_program_pair">Program dostosowany do uczniów</li>
-          <li data-i18n="li_flexible">Elastyczne terminy</li>
-          <li data-i18n="li_materials_included">Wszystkie materiały w cenie kursu</li>
-          <li data-i18n="li_virtual_tools">Wirtualna przestrzeń, narzędzia</li>
-        </ul>
-        <div class="card-cta"><a href="#contact" class="btn primary" data-i18n="cta_signup">Zapisz się</a></div>
-      </div>
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-      <div class="price-card">
-        <header>
-          <h3 data-i18n="price_business_h3">Oferta dla firm</h3>
-          <div class="price"><span data-i18n="price_business">Cena do uzgodnienia</span></div>
-        </header>
-        <ul>
-          <li data-i18n="li_langs">Języki: polski dla obcokrajowców, włoski, angielski</li>
-          <li data-i18n="li_business_format">Zajęcia 1 na 1 lub małe grupy</li>
-          <li data-i18n="li_program_business">Program dla firm</li>
-          <li data-i18n="li_flexible">Elastyczne terminy</li>
-          <li data-i18n="li_materials_included">Wszystkie materiały w cenie kursu</li>
-          <li data-i18n="li_reports">Raporty frekwencji</li>
-        </ul>
-        <div class="card-cta"><a href="#contact" class="btn primary" data-i18n="cta_signup">Zapisz się</a></div>
-      </div>
-    </div>
-  </section>
+      const button = form.querySelector("button");
+      button.disabled = true;
+      status.textContent = "Wysyłanie wiadomości...";
 
-  <section id="materials" class="section">
-    <h2 data-i18n="materials_heading">Materiały</h2>
-    <div class="card">
-      <p data-i18n="materials_paragraph">Znajdziesz tu autorskie materiały stworzone z myślą o efektywnej i przyjemnej nauce języków. Ćwiczenia, karty pracy i mini-kursy zaprojektowane są tak, aby wspierać rozwój słownictwa, gramatyki i swobodnej komunikacji – zarówno dla osób uczących się samodzielnie, jak i dla nauczycieli szukających inspiracji na zajęcia. Regularnie pojawiają się tu nowe treści dostosowane do różnych poziomów zaawansowania.</p>
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: new FormData(form),
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
 
-      <h3 data-i18n="materials_polish_h3">Język polski</h3>
-      <div class="materials-grid">
-        <div class="material">
-          <h4 data-i18n="mat1_title">Porozmawiajmy po polsku – gotowe karty konwersacyjne JPJO</h4>
-          <a class="btn primary" href="https://zlotynauczyciel.pl/downloads/porozmawiajmy-po-polsku-gotowe-karty-konwersacyjne-jpjo/" target="_blank" data-i18n="mat1_cta">Zobacz materiał</a>
-        </div>
-        <div class="material">
-          <h4 data-i18n="mat2_title">JPJO C1: Polskie bary mleczne</h4>
-          <a class="btn primary" href="https://zlotynauczyciel.pl/downloads/jpjo-c1-polskie-bary-mleczne-na-podstawie-fragmentu-kochana-rodzinka-i-ja-natalii-rolleczek/" target="_blank" data-i18n="mat2_cta">Zobacz materiał</a>
-        </div>
-        <div class="material">
-          <h4 data-i18n="mat3_title">Gra planszowa – CZAS PRZYSZŁY</h4>
-          <a class="btn primary" href="https://zlotynauczyciel.pl/downloads/gra-planszowa-czas-przyszly/" target="_blank" data-i18n="mat3_cta">Zobacz materiał</a>
-        </div>
-        <div class="material">
-          <h4 data-i18n="mat4_title">TABOO O POLSCE</h4>
-          <a class="btn primary" href="https://zlotynauczyciel.pl/downloads/taboo-o-polscе-odkrywaj-polske-slowo-po-slowie-2/" target="_blank" data-i18n="mat4_cta">Zobacz materiał</a>
-        </div>
-      </div>
+        if (response.ok) {
+          status.textContent = "✅ Wiadomość została wysłana!";
+          status.className = "form-status success";
+          form.reset();
+        } else {
+          throw new Error("Błąd wysyłki");
+        }
+      } catch (error) {
+        status.textContent = "❌ Coś poszło nie tak. Spróbuj ponownie.";
+        status.className = "form-status error";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
 
-      <p class="muted" data-i18n="materials_soon">Materiały do nauki włoskiego i angielskiego — już wkrótce.</p>
-    </div>
-  </section>
-
-  <section id="testimonials" class="section">
-    <h2 data-i18n="testimonials_heading">Opinie kursantów</h2>
-    <div class="quotes">
-      <blockquote>
-        <p data-i18n="quote1">Dominika jest zawsze świetnie przygotowana do zajęć i uczy w sposób bardzo zrozumiały. Zdecydowanie polecam!</p>
-        <footer>— <span data-i18n="quote1_author">Zuzia</span></footer>
-      </blockquote>
-      <blockquote>
-        <p data-i18n="quote2">Dominika to nauczycielka z powołania! Jej pasja do języka włoskiego jest zaraźliwa...</p>
-        <footer>— <span data-i18n="quote2_author">Weronika</span></footer>
-      </blockquote>
-      <blockquote>
-        <p data-i18n="quote3">Super miła i pomocna nauczycielka! Bardzo dobre przygotowanie do matury rozszerzonej z języka włoskiego. Polecam!!</p>
-        <footer>— <span data-i18n="quote3_author">Ala</span></footer>
-      </blockquote>
-      <blockquote>
-        <p data-i18n="quote4">Już od pierwszej lekcji języka włoskiego... Z całego serca polecam!</p>
-        <footer>— <span data-i18n="quote4_author">Aleksandra</span></footer>
-      </blockquote>
-    </div>
-  </section>
-
-  <section id="contact" class="section">
-    <h2 data-i18n="contact_heading">Kontakt</h2>
-    <div class="contact-grid">
-      <form id="contact-form" class="card form" autocomplete="on" aria-label="Formularz kontaktowy">
-        <label data-i18n="label_name">Imię</label>
-        <input name="name" id="contact-name" required autocomplete="name">
-
-        <label data-i18n="label_email">E-mail</label>
-        <input type="email" name="email" id="contact-email" required autocomplete="email">
-
-        <label data-i18n="label_language">Język, którym jesteś zainteresowany/a</label>
-        <select name="preferred_language" id="contact-language" required autocomplete="off">
-          <option value="pl" data-i18n="opt_pl">Polski</option>
-          <option value="en" data-i18n="opt_en">English</option>
-          <option value="it" data-i18n="opt_it">Italiano</option>
-        </select>
-
-        <label data-i18n="label_message">Wiadomość</label>
-        <textarea name="message" id="contact-message" rows="4" required autocomplete="off"></textarea>
-
-        <button class="btn primary" type="submit" data-i18n="btn_send">Wyślij</button>
-      </form>
-      <div class="card">
-        <h3 data-i18n="contact_details_h3">Dane kontaktowe</h3>
-        <p><strong data-i18n="school_name">Szkoła językowa Mondo</strong></p>
-        
-        <p data-i18n="contact_email">E-mail: <a href="mailto:szkolamondo@gmail.com">szkolamondo@gmail.com</a></p>
-        <div class="socials">
-          <a href="https://www.facebook.com/profile.php?id=61563993132321" class="icon fb" target="_blank" rel="noopener" title="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7h-2.5V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.7-1.6 1.5V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg>
-          </a>
-          <a href="https://www.instagram.com/szkolamondo/" class="icon ig" target="_blank" rel="noopener" title="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM17.8 6.2a1 1 0 1 1-1.6 1.2 1 1 0 0 1 1.6-1.2z"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer class="footer"><div class="container"><small>© <span id="year"></span> <span data-i18n="school_name_small">Szkoła językowa Mondo</span></small></div></footer>
-
-<script src="script.js"></script>
 </body>
 </html>
